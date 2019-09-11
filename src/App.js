@@ -20,7 +20,7 @@ class App extends React.Component {
     .then(response => response.json())
     .then(bounties => {
       console.log(bounties)
-      this.setState({ bounties: bounties })
+      this.setState({ bounties: bounties, current: {} })
     })
     .catch(err => {
       console.log('Error while fetching bounties', err)
@@ -51,8 +51,8 @@ class App extends React.Component {
         </header>
         <main>
           {posters}
-          <ShowBounty current={this.state.current} />
-          <NewBountyForm />
+          <ShowBounty current={this.state.current} refreshBounties={this.getBounties} />
+          <NewBountyForm refreshBounties={this.getBounties} />
         </main>
       </div>
     );
